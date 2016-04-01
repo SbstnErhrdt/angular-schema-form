@@ -1,0 +1,26 @@
+<div ng-model="$$value$$">
+  <div sf-array="form"
+       class="form-group schema-form-checkboxes {{form.htmlClass}}"
+       ng-class="{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}">
+    <div class="item item-divider item-text-wrap"
+         sf-array="form"
+         ng-class="{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}"
+         ng-show="showTitle()">
+      {{form.title}}
+    </div>
+    <div ng-repeat="val in titleMapValues track by $index">
+      <!-- <label class="item">
+        <input type="checkbox"
+               ng-disabled="form.readonly"
+               sf-changed="form"
+               class="{{form.fieldHtmlClass}}"
+               ng-model="titleMapValues[$index]"
+               name="{{form.key.slice(-1)[0]}}">
+        <span ng-bind-html="form.titleMap[$index].name"></span>
+      </label> -->
+      <ion-checkbox class="item-text-wrap" ng-model="titleMapValues[$index]">{{form.titleMap[$index].name}}</ion-checkbox>
+    </div>
+    <div class="help-block" sf-message="form.description"></div>
+  </div>
+</div>
+

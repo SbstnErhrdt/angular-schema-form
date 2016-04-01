@@ -1,0 +1,24 @@
+<div ng-init="selected = { tab: 0 }" class="schema-form-tabs {{form.htmlClass}}">
+  <div class="padding">
+    <div class="button-bar">
+      <a ng-repeat="tab in form.tabs"
+         class="button"
+         ng-disabled="form.readonly"
+         ng-click="$event.preventDefault() || (selected.tab = $index)"
+         ng-class="{active: selected.tab === $index}"
+      >
+        {{ tab.title }}
+      </a>
+    </div>
+  </div>
+  <div class="card {{form.fieldHtmlClass}}">
+    <div class="tab-pane"
+         ng-disabled="form.readonly"
+         ng-repeat="tab in form.tabs"
+         ng-show="selected.tab === $index"
+         ng-class="{active: selected.tab === $index}">
+      <ionic-decorator ng-repeat="item in tab.items" form="item">
+      </ionic-decorator>
+    </div>
+  </div>
+</div>

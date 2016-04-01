@@ -1,0 +1,15 @@
+<div class="item item-text-wrap schema-form-submit {{form.htmlClass}}">
+  <input type="submit"
+         class="button button-block {{ form.style || 'button-balanced' }} {{form.fieldHtmlClass}}"
+         value="{{form.title}}"
+         ng-disabled="form.readonly"
+         ng-if="form.type === 'submit'">
+  <button class="button button-block {{ form.style || 'button-balanced' }}"
+          type="button"
+          ng-click="buttonClick($event,form)"
+          ng-disabled="form.readonly"
+          ng-if="form.type !== 'submit'">
+    <span ng-if="form.icon" class="{{form.icon}}"></span>
+    {{form.title}}
+  </button>
+</div>

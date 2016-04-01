@@ -1,0 +1,26 @@
+<div ng-model="$$value$$"
+     ng-model-options="form.ngModelOptions"
+     schema-validate="form">
+
+  <div class="item item-divider item-text-wrap"
+       sf-array="form"
+       ng-class="{'has-error': form.disableErrorState !== true &&  hasError(), 'has-success': form.disableSuccessState !== true &&  hasSuccess()}"
+       ng-show="showTitle()">
+    {{form.title}}
+  </div>
+
+  <div class="radio" ng-repeat="item in form.titleMap">
+    <!-- <label>
+      <input type="radio"
+             class="{{form.fieldHtmlClass}}"
+             sf-changed="form"
+             ng-disabled="form.readonly"
+             ng-model="$$value$$"
+             ng-value="item.value"
+             name="{{form.key.join('.')}}">
+      <span ng-bind-html="item.name"></span>
+    </label> -->
+    <ion-radio ng-model="$$value$$" ng-value="item.value"><span ng-bind-html="item.name"></span></ion-radio>
+  </div>
+  <div class="help-block" sf-message="form.description"></div>
+</div>

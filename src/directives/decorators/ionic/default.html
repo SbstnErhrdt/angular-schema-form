@@ -1,0 +1,60 @@
+<div class="item item-input item-stacked-label item-text-wrap schema-form-{{form.type}} {{form.htmlClass}}"
+     ng-class="{'has-error': form.disableErrorState !== true && hasError(), 'has-success': form.disableSuccessState !== true && hasSuccess(), 'has-feedback': form.feedback !== false }">
+
+  <label class="input-label {{form.labelHtmlClass}}"
+         ng-class="{'sr-only': !showTitle()}"
+         for="{{form.key.slice(-1)[0]}}">{{form.title}}
+  </label>
+
+  <input ng-if="!form.fieldAddonLeft && !form.fieldAddonRight"
+         ng-show="form.key"
+         type="{{form.type}}"
+         step="any"
+         sf-changed="form"
+         placeholder="{{form.schema.placeholder || 'here'}}"
+         class="form-control {{form.fieldHtmlClass}}"
+         id="{{form.key.slice(-1)[0]}}"
+         ng-model-options="form.ngModelOptions"
+         ng-model="$$value$$"
+         ng-disabled="form.readonly"
+         schema-validate="form"
+         name="{{form.key.slice(-1)[0]}}"
+         aria-describedby="{{form.key.slice(-1)[0] + 'Status'}}">
+
+  <div ng-if="form.fieldAddonLeft || form.fieldAddonRight"
+       ng-class="{'input-group': (form.fieldAddonLeft || form.fieldAddonRight)}">
+    <span ng-if="form.fieldAddonLeft"
+          class="input-group-addon"
+          ng-bind-html="form.fieldAddonLeft"></span>
+    <input ng-show="form.key"
+           type="{{form.type}}"
+           step="any"
+           sf-changed="form"
+           placeholder="{{form.placeholder}}"
+           class="form-control {{form.fieldHtmlClass}}"
+           id="{{form.key.slice(-1)[0]}}"
+           ng-model-options="form.ngModelOptions"
+           ng-model="$$value$$"
+           ng-disabled="form.readonly"
+           schema-validate="form"
+           name="{{form.key.slice(-1)[0]}}"
+           aria-describedby="{{form.key.slice(-1)[0] + 'Status'}}">
+
+    <span ng-if="form.fieldAddonRight"
+          class="input-group-addon"
+          ng-bind-html="form.fieldAddonRight"></span>
+  </div>
+
+  <span style="font-size: 80%"
+        ng-if="hasError() || hasSuccess()"
+        id="{{form.key.slice(-1)[0] + 'Status'}}"
+        ng-class="{'balanced': hasSuccess(), 'assertive': hasError()}">
+      <i ng-if="form.feedback !== false"
+         class="form-control-feedback"
+         ng-class="evalInScope(form.feedback) || {'ion-ios-checkmark-outline': hasSuccess(), 'ion-ios-close-outline': hasError() }"
+         aria-hidden="true"></i>
+    {{ hasSuccess() ? 'ok' : (form.validationMessage ||'(error)') }}
+  </span>
+
+  <p style="font-size: 60%">{{form.description}}</p>
+</div>
